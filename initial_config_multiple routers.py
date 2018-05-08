@@ -11,14 +11,15 @@ password = getpass.getpass()
 enable_password = getpass.getpass()
 
 for item in HOSTS:
+    telnet_into_router()
     setup_router()
 
 print "Script completed"
 
-# End of script
+def telnet_into_router():
+    tn = telnetlib.Telnet(HOST)
 
 def setup_router():
-    tn = telnetlib.Telnet(HOST)
 
     tn.read_until(b"Username: ")
     tn.write(user.encode('ascii') + b"\n")
