@@ -8,9 +8,16 @@ HOSTS = ['1st_router_IP', '2nd_router_IP', '3rd router_IP', '4th_router_IP']
 AAA_SERVER = "IP address of RADIUS or TACACS+ server goes here (for usernames and passwords / authentication)"
 user = input("Username: ")
 password = getpass.getpass()
+enable_password = getpass.getpass()
 
 for item in HOSTS:
+    setup_router()
 
+print "Script completed"
+
+# End of script
+
+def setup_router():
     tn = telnetlib.Telnet(HOST)
 
     tn.read_until(b"Username: ")
@@ -20,7 +27,7 @@ for item in HOSTS:
     tn.write(password.encode('ascii') + b"\n")
 
     tn.write(b"enable\n")
-    tn.write(b"enable password goes here\n")
+    tn.write(enable_password.encode('ascii') + b\n")
 
     #Enter global configuration mode
     tn.write(b"configure terminal\n")
@@ -53,6 +60,3 @@ for item in HOSTS:
     tn.write(b"exit\n")
 
     print(tn.read_all().decode('ascii')
-
-# End of script
-print "Script completed"
