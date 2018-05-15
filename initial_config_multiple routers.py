@@ -4,31 +4,27 @@
 import getpass
 import telnetlib
 
-HOSTS = ['1st_router_IP', '2nd_router_IP', '3rd router_IP', '4th_router_IP']
+HOSTS = ['10.1.1.2', '10.2.1.2']
 AAA_SERVER = "IP address of RADIUS or TACACS+ server goes here (for usernames and passwords / authentication)"
 user = input("Username: ")
 password = getpass.getpass()
 enable_password = getpass.getpass()
 
 for item in HOSTS:
-    telnet_into_router()
     setup_router()
 
-print "Script completed"
-
-def telnet_into_router():
-    telnet = telnetlib.Telnet(HOST)
+print ("Script completed")
 
 def setup_router():
-
+    telnet = telnetlib.Telnet(HOST)
     telnet.read_until(b"Username: ")
     telnet.write(user.encode('ascii') + b"\n")
     if password:
-    telnet.read_until(b"Password: ")
-    telnet.write(password.encode('ascii') + b"\n")
+       telnet.read_until(b"Password: ")
+       telnet.write(password.encode('ascii') + b"\n")
 
     telnet.write(b"enable\n")
-    telnet.write(enable_password.encode('ascii') + b\n")
+    telnet.write(enable_password.encode('ascii') + b"\n")
 
     #Enter global configuration mode
     telnet.write(b"configure terminal\n")
@@ -60,4 +56,4 @@ def setup_router():
 
     telnet.write(b"exit\n")
 
-    print(telnet.read_all().decode('ascii')
+    print(telnet.read_all().decode('ascii'))
