@@ -4,7 +4,7 @@
 import getpass
 import telnetlib
 
-HOSTS = ['10.1.1.2', '10.2.1.2']
+HOSTS = ['10.1.1.2', '10.2.1.2', '10.3.0.2', '10.5.0.5']
 AAA_SERVER = "IP address of RADIUS or TACACS+ server goes here (for usernames and passwords / authentication)"
 user = input("Username: ")
 password = getpass.getpass()
