@@ -5,7 +5,7 @@ import getpass
 import telnetlib
 
 HOSTS = ['10.1.1.2', '10.2.1.2', '10.3.0.2', '10.5.0.5']
-AAA_SERVER = "IP address of RADIUS or TACACS+ server goes here (for usernames and passwords / authentication)"
+AAA_SERVER = "IP address of RADIUS or TACACS+ server goes here"
 user = input("Username: ")
 password = getpass.getpass()
 enable_password = getpass.getpass()
@@ -36,7 +36,7 @@ def setup_router():
     #Set a banner message
     telnet.write(b"banner motd & ***Warning***  Authorized persons only &\n")
 
-    #Set up TACACs+ or RADIUS
+    #Set up TACACs+ or RADIUS server for authentication
     telnet.write(b"aaa new-model\n")
     telnet.write(b"radius-server host AAA_SERVER\n")
     #telnet.write(b"tacacs-server host AAA_SERVER\n")
